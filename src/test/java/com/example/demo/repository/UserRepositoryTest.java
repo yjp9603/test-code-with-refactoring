@@ -3,7 +3,6 @@ package com.example.demo.repository;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import com.example.demo.model.UserStatus;
-import org.assertj.core.api.AbstractLongAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
