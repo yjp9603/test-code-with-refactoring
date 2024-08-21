@@ -19,20 +19,18 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    void findByIdAndStatus_로_유저데이터를_찾아오기() {
+    void findByIdAndStatus로_유저데이터를_찾아오기() {
         //given
-
         // when
-        Optional<UserEntity> result = userRepository.findByIdAndStatus(1, UserStatus.ACTIVE);
+        Optional<UserEntity> user = userRepository.findByIdAndStatus(1, UserStatus.ACTIVE);
 
         // then
-        assertThat(result.isPresent()).isTrue();
+        assertThat(user.isPresent()).isTrue();
     }
 
     @Test
-    void findByIdAndStatus_는_데이터가_없으면_Optional_empty_를_리턴한다() {
+    void findByIdAndStatus는_데이터가_없으면_Optional_empty_를_리턴한다() {
         //given
-
         // when
         Optional<UserEntity> result = userRepository.findByIdAndStatus(1, UserStatus.PENDING);
 
@@ -41,18 +39,17 @@ public class UserRepositoryTest {
     }
 
     @Test
-    void findByEmailAndStatus_로_유저데이터를_찾아온다() {
+    void findByEmailAndStatus로_유저데이터를_찾아온다() {
         //given
-
         // when
-        Optional<UserEntity> result = userRepository.findByEmailAndStatus("yjp9603@gmail.com", UserStatus.ACTIVE);
+        Optional<UserEntity> user = userRepository.findByEmailAndStatus("yjp9603@gmail.com", UserStatus.ACTIVE);
 
         // then
-        assertThat(result.isPresent()).isTrue();
+        assertThat(user.isPresent()).isTrue();
     }
 
     @Test
-    void findByEmailAndStatus_는_데이터가_없으면_Optional_empty_를_리턴한다() {
+    void findByEmailAndStatus는_데이터가_없으면_Optional_empty_를_반환한다() {
         //given
 
         // when
