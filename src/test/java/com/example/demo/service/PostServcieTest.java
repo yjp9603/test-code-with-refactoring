@@ -1,8 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.model.dto.PostCreateDto;
-import com.example.demo.model.dto.PostUpdateDto;
-import com.example.demo.repository.PostEntity;
+import com.example.demo.post.domain.PostCreateDto;
+import com.example.demo.post.domain.PostUpdateDto;
+import com.example.demo.post.infrastructure.PostEntity;
+import com.example.demo.post.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
