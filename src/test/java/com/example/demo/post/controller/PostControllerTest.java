@@ -71,7 +71,7 @@ public class PostControllerTest {
                                 .content(objectMapper.writeValueAsString(postUpdateDto)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").isNumber())
-                .andExpect(jsonPath("$.content").value("foobar"))
+                .andExpect(jsonPath("$.content").value("helloworld"))
                 .andExpect(jsonPath("$.writer.id").isNumber())
                 .andExpect(jsonPath("$.writer.email").value("yjp9603@gmail.com"))
                 .andExpect(jsonPath("$.writer.nickname").value("jaden"));
