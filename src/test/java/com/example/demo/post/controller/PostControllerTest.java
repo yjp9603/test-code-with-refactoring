@@ -60,7 +60,7 @@ public class PostControllerTest {
     void 사용자는_게시물을_수정할_수_있다() throws Exception {
         // given
         PostUpdateDto postUpdateDto = PostUpdateDto.builder()
-                .content("foobar")
+                .content("helloworld")
                 .build();
 
         // when
