@@ -11,7 +11,6 @@ import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.UserCreateDto;
 import com.example.demo.user.domain.UserUpdateDto;
 import com.example.demo.user.infrastructure.UserEntity;
-import com.example.demo.user.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
         @Sql(value = "/sql/delete-all-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 
 })
-public class UserServiceTest {
+public class UserEntityServiceTest {
     @Autowired
     private UserService userService;
     @MockBean
