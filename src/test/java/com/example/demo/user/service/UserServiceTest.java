@@ -7,10 +7,10 @@ import static org.mockito.ArgumentMatchers.any;
 
 import com.example.demo.common.domain.exception.CertificationCodeNotMatchedException;
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
+import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.UserCreateDto;
 import com.example.demo.user.domain.UserUpdateDto;
-import com.example.demo.user.infrastructure.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
         @Sql(value = "/sql/delete-all-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 
 })
-public class UserEntityServiceTest {
+public class UserServiceTest {
     @Autowired
     private UserService userService;
     @MockBean
@@ -41,7 +41,7 @@ public class UserEntityServiceTest {
         String email = "yjp9603@gmail.com";
 
         //when
-        UserEntity user = userService.getByEmail(email);
+        User user = userService.getByEmail(email);
 
         //then
         assertThat(user.getNickname()).isEqualTo("jaden");
@@ -55,7 +55,7 @@ public class UserEntityServiceTest {
         //when
         //then
         assertThatThrownBy(() -> {
-            UserEntity user = userService.getByEmail(email);
+            User user = userService.getByEmail(email);
         }).isInstanceOf(ResourceNotFoundException.class);
     }
 
@@ -63,7 +63,7 @@ public class UserEntityServiceTest {
     void getById는_ACTIVE_상태인_유저를_찾아올_수_있다() {
         //given
         //when
-        UserEntity user = userService.getById(1);
+        User user = userService.getById(1);
         //then
         assertThat(user.getNickname()).isEqualTo("jaden");
     }
@@ -72,7 +72,7 @@ public class UserEntityServiceTest {
     void getById는_PENDING_상태인_유저는_찾아올_수_없다() {
         //then
         assertThatThrownBy(() -> {
-            UserEntity user = userService.getById(2);
+            User user = userService.getById(2);
         }).isInstanceOf(ResourceNotFoundException.class);
     }
 
@@ -87,7 +87,7 @@ public class UserEntityServiceTest {
         BDDMockito.doNothing().when(mailSender).send(any(SimpleMailMessage.class));
 
         //when
-        UserEntity user = userService.create(userCreateDto);
+        User user = userService.create(userCreateDto);
 
         //then
         assertThat(user.getId()).isNotNull();
@@ -107,7 +107,7 @@ public class UserEntityServiceTest {
         userService.update(1, userUpdateDto);
 
         //then
-        UserEntity user = userService.getById(1);
+        User user = userService.getById(1);
         assertThat(user.getId()).isNotNull();
         assertThat(user.getAddress()).isEqualTo("GangNam");
         assertThat(user.getNickname()).isEqualTo("yongjin");
@@ -120,7 +120,7 @@ public class UserEntityServiceTest {
         userService.login(1);
 
         // then
-        UserEntity user = userService.getById(1);
+        User user = userService.getById(1);
         assertThat(user.getLastLoginAt()).isGreaterThan(0L);
         // assertThat(user.getLastLoginAt()).isEqualTo("T.T"); // FIXME
     }
@@ -132,7 +132,7 @@ public class UserEntityServiceTest {
         userService.verifyEmail(2, "aaaaaaaaa-aaaaaaaaa");
 
         // then
-        UserEntity user = userService.getById(2);
+        User user = userService.getById(2);
         System.out.println(user);
         assertThat(user.getStatus()).isEqualTo(UserStatus.ACTIVE);
     }

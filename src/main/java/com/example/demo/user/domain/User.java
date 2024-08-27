@@ -78,5 +78,6 @@ public class User {
     }
 
     public void setStatus(UserStatus userStatus) {
+
     }
 }

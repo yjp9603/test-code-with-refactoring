@@ -1,5 +1,6 @@
 package com.example.demo.post.service;
 
+import com.example.demo.post.domain.Post;
 import com.example.demo.post.domain.PostCreateDto;
 import com.example.demo.post.domain.PostUpdateDto;
 import com.example.demo.post.infrastructure.PostEntity;
@@ -27,7 +28,7 @@ public class PostServcieTest {
     void getById는_존재하는_게시글을_가져온다() {
         //given
         //when
-        PostEntity post = postService.getById(1);
+        Post post = postService.getById(1);
 
         //then
         assertThat(post.getContent()).isEqualTo("SpringTest");
@@ -43,7 +44,7 @@ public class PostServcieTest {
                 .build();
 
         // when
-        PostEntity result = postService.create(postCreateDto);
+        Post result = postService.create(postCreateDto);
 
         // then
         assertThat(result.getId()).isNotNull();
@@ -62,8 +63,8 @@ public class PostServcieTest {
         postService.update(1, postUpdateDto);
 
         // then
-        PostEntity postEntity= postService.getById(1);
-        assertThat(postEntity.getContent()).isEqualTo("hellohello");
-        assertThat(postEntity.getModifiedAt()).isGreaterThan(0);
+        Post post = postService.getById(1);
+        assertThat(post.getContent()).isEqualTo("hellohello");
+        assertThat(post.getModifiedAt()).isGreaterThan(0);
     }
 }
