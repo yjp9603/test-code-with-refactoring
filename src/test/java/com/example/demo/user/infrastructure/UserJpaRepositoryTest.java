@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @Sql("/sql/user-repository-test-data.sql")
-public class UserEntityJpaRepositoryTest {
+public class UserJpaRepositoryTest {
 
 
     @Autowired

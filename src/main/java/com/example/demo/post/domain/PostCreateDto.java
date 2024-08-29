@@ -13,7 +13,8 @@ public class PostCreateDto {
     @Builder
     public PostCreateDto(
         @JsonProperty("writerId") long writerId,
-        @JsonProperty("content") String content) {
+        @JsonProperty("content") String content
+    ) {
         this.writerId = writerId;
         this.content = content;
     }
