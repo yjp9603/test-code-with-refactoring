@@ -1,8 +1,9 @@
-package com.example.demo.post.service;
+package com.example.demo.medium;
 
 import com.example.demo.post.domain.Post;
 import com.example.demo.post.domain.PostCreateDto;
 import com.example.demo.post.domain.PostUpdateDto;
+import com.example.demo.post.service.PostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,10 +13,16 @@ import org.springframework.test.context.jdbc.SqlGroup;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@SpringBootTest
+@TestPropertySource("classpath:test-application.properties")
+@SqlGroup({
+        @Sql(value = "/sql/post-service-test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
+        @Sql(value = "/sql/delete-all-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 
+})
 public class PostServcieTest {
+    @Autowired
     private PostService postService;
-    
 
     @Test
     void getById는_존재하는_게시글을_가져온다() {
