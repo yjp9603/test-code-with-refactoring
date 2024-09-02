@@ -83,6 +83,7 @@ public class PostControllerTest {
         TestContainer testContainer = TestContainer.builder()
                 .clockHolder(() -> 200L)
                 .build();
+
         User user = User.builder()
                 .id(1L)
                 .email("yjp9603@gmail.com")
@@ -92,7 +93,9 @@ public class PostControllerTest {
                 .certificationCode("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaab")
                 .lastLoginAt(100L)
                 .build();
+
         testContainer.userRepository.save(user);
+
         testContainer.postRepository.save(Post.builder()
                 .id(1L)
                 .content("hellotest")
@@ -102,13 +105,13 @@ public class PostControllerTest {
 
         // when
         ResponseEntity<PostResponse> result = testContainer.postController.update(1L, PostUpdateDto.builder()
-                .content("foobar")
+                .content("update test")
                 .build());
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
         assertThat(result.getBody()).isNotNull();
-        assertThat(result.getBody().getContent()).isEqualTo("asdasd");
+        assertThat(result.getBody().getContent()).isEqualTo("update test");
         assertThat(result.getBody().getWriter().getNickname()).isEqualTo("jaden");
         assertThat(result.getBody().getCreatedAt()).isEqualTo(100L);
         assertThat(result.getBody().getModifiedAt()).isEqualTo(200L);
