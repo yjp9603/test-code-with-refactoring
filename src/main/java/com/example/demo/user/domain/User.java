@@ -78,8 +78,4 @@ public class User {
                 .lastLoginAt(lastLoginAt)
                 .build();
     }
-
-    public void setStatus(UserStatus userStatus) {
-
-    }
 }
